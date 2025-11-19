@@ -4,12 +4,11 @@ pipeline {
         stage("Increment Version") {
             steps {
                script {
-                  // sh '''
-                  //   cd ./app 
-                  //   npm install
-                  //   npm version patch
-                  //   '''
-                  echo "Increment"
+                  sh '''
+                    cd ./app 
+                    npm install
+                    npm version patch
+                    '''
                }
             }
         }
