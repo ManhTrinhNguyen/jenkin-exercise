@@ -5,12 +5,10 @@ pipeline {
             steps {
                script {
                   sh '''
-                    cd app 
+                    cd ./app 
                     npm install
                     npm version patch
                     '''
-                    echo "Get Version"
-                    def packageJson = readJSON file: './app/package.json'
                }
             }
         }
