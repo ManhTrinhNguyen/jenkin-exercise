@@ -7,7 +7,7 @@ pipeline {
                   sh '''
                     cd ./app 
                     npm install
-                    npm version patch
+                    npm version patch -—no-git-tag-version
                     '''
                }
             }
