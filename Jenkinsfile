@@ -4,11 +4,10 @@ pipeline {
         stage("Increment Version") {
             steps {
                script {
-                  sh '''
-                    cd ./app 
+                  dir('app') {
                     npm install
                     npm version patch -—no-git-tag-version
-                    '''
+                  }
                }
             }
         }
