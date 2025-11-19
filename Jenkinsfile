@@ -5,6 +5,7 @@ pipeline {
             steps {
                script {
                   sh "cd app"
+                  sh "npm install"
                }
             }
         }
