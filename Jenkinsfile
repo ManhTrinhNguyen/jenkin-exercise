@@ -1,10 +1,10 @@
 pipeline {   
     agent any
     stages {
-        stage("test") {
+        stage("Increment Version") {
             steps {
                script {
-                  echo "Testing Applications"
+                  sh "cd app"
                }
             }
         }
