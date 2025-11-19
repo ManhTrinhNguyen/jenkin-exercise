@@ -10,8 +10,6 @@ pipeline {
                     npm version patch
                     '''
                     def packageJSON = readJSON file: './app/package.json'
-
-
                }
             }
         }
