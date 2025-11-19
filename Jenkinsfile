@@ -4,7 +4,11 @@ pipeline {
         stage("Increment Version") {
             steps {
                script {
-                  sh "cd app && npm install"
+                  sh '''
+                    cd app 
+                    npm install
+                    npm version patch
+                    '''
                }
             }
         }
