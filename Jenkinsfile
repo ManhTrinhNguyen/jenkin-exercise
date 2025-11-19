@@ -9,6 +9,7 @@ pipeline {
                     npm install
                     npm version patch
                     '''
+                    echo "Get Version"
                     def packageJson = readJSON file: './app/package.json'
                }
             }
