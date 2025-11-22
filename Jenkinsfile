@@ -15,12 +15,17 @@ pipeline {
                 }
             }
         }
-        stage("build") {
-            when {
-                expression {
-                    BRANCH_NAME == "main"
+        stage("test") {
+            steps {
+                script {
+                    echo "Test"
+                    dir('app') {
+                        sh 'npm run test'
+                    }
                 }
             }
+        }
+        stage("build") {
             steps {
                 script {
                     echo "Building Application"
