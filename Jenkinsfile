@@ -3,11 +3,9 @@ pipeline {
     stages {
         stage("Increment Version") {
             steps {
-               script {
-                  dir('app') {
+                dir('app') {
                     npm install
-                  }
-               }
+                }   
             }
         }
         stage("build") {
