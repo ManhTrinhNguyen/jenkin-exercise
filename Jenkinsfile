@@ -8,6 +8,9 @@ pipeline {
                     sh 'pwd'
                     sh 'ls /var/jenkins_home/workspace/nodejs_main'
                     sh 'ls app'
+                    dir('app') {
+                        sh 'npm install'
+                    }
                 }
             }
         }
