@@ -10,7 +10,8 @@ pipeline {
                         sh 'npm install'
                         sh 'npm version patch --no-git-tag-version'
                         def jsonConfig = readJSON file: 'package.json'
-                        echo "JSON Content: ${jsonConfig}"
+                        def VERSION = jsonConfig.version
+                        echo "Version: ${VERSION}"
                     }
                 }
             }
