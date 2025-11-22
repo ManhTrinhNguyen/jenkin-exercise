@@ -12,6 +12,7 @@ pipeline {
                         def jsonConfig = readJSON file: 'package.json'
                         def VERSION = jsonConfig.version
                         echo "Version: ${VERSION}"
+                        env.IMAGE_VERSION = VERSION 
                     }
                 }
             }
