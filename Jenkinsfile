@@ -5,13 +5,11 @@ pipeline {
             steps {
                 script {
                     echo "Increment version"
-                    
                     dir('app') {
                         sh 'npm install'
                         sh 'npm version patch --no-git-tag-version'
                         def jsonConfig = readJSON file: 'package.json'
                         def VERSION = jsonConfig.version
-                        echo "Version: ${VERSION}"
                         env.IMAGE_VERSION = VERSION 
                     }
                 }
@@ -26,6 +24,7 @@ pipeline {
             steps {
                 script {
                     echo "Building Application"
+                    echo "${env.IMAGE_VERSION}"
                 }
             }
         }
