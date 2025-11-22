@@ -5,6 +5,7 @@ pipeline {
             steps {
                 script {
                     echo "Increment version"
+                    sh 'pwd'
                 }
             }
         }
