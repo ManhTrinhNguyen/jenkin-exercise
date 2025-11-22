@@ -9,6 +9,8 @@ pipeline {
                     dir('app') {
                         sh 'npm install'
                         sh 'npm version patch -—no-git-tag-version'
+                        def jsonConfig = readJSON file: 'package.json'
+                        echo '$jsonConfig'
                     }
                 }
             }
