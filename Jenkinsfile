@@ -6,7 +6,7 @@ pipeline {
                 script {
                     echo "Increment version"
                     sh 'pwd'
-                    sh 'ls /app'
+                    sh 'ls /var/jenkins_home/workspace/nodejs_main'
                 }
             }
         }
