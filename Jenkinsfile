@@ -45,7 +45,7 @@ pipeline {
 
                     sh 'git add .'
                     sh 'git commit -m "ci: version bump"'
-                    sh "git push https://${USER}:${PWD}@github.com/${USER}/jenkin-exercise.git"
+                    sh "git push https://${USER}:${PWD}@github.com/${USER}/jenkin-exercise.git HEAD:main"
                 }
 
             }
