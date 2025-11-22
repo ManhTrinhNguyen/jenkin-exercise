@@ -37,9 +37,17 @@ pipeline {
                 }
             }
         }
-        stage("deploy"){
+        stage("Commit to Git"){
             steps {
-               echo "Deploying Application"
+                withCredentials([usernamePassword(credentialsId: 'github_credential', usernameVariable: 'USER', passwordVariable: 'PWD')]){
+                    sh 'git config --global user.email "jenkins@gmail.com"'
+                    sh 'git config --global user.name "Jenkins"'
+
+                    sh 'git add .'
+                    sh 'git commit -m "ci: version bump"'
+                    sh "git push https://${USER}:${PASSWORD}@github.com/${USER}/jenkin-exercise.git"
+                }
+
             }
         }
     } 
