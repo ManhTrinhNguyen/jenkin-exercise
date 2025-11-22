@@ -6,7 +6,6 @@ pipeline {
                script {
                   dir('app') {
                     npm install
-                    npm version patch -—no-git-tag-version
                   }
                }
             }
@@ -30,3 +29,4 @@ pipeline {
         }
     } 
 }
+
