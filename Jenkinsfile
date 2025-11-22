@@ -6,7 +6,7 @@ pipeline {
                 script {
                     echo "Increment version"
                     sh 'pwd'
-                    sh 'ls /var/jenkins_home/workspace/nodejs_main'
+                    sh 'ls /var/jenkins_home/workspace/Jenkins_main'
                     sh 'ls app'
                     dir('app') {
                         sh 'npm install'
