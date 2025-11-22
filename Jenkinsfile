@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     echo "Building Application"
-                    sh "docker build -t nguyenmanhtrinh/demo-app:nodejs-${env.IMAGE_VERSION}"
+                    sh "docker build -t nguyenmanhtrinh/demo-app:nodejs-${env.IMAGE_VERSION} ."
                 }
             }
         }
