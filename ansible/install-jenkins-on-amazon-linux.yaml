@@ -1,0 +1,71 @@
+- name: Install Jenkins
+  hosts: aws_ec2
+  become: yes
+  tasks:
+  - name: Update all packages
+    ansible.builtin.dnf:
+      name: "*"
+      state: latest
+  - name: Install docker
+    ansible.builtin.dnf:
+      name: docker
+      state: present 
+  - name: Start Docker 
+    ansible.builtin.systemd_service:
+      name: docker
+      state: started
+  - name: Add ec2-user to Docker group 
+    ansible.builtin.user:
+      name: ec2-user
+      groups: docker 
+      append: yes 
+  - name: Reconnect to the Server
+    meta: reset_connection 
+  - name: Run Jenkins as Docker Container
+    community.docker.docker_container:
+      name: jenkins 
+      image: jenkins/jenkins:lts-jdk21
+      volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock 
+      ports:
+      - "8080:8080"
+      - "50000:50000"
+      restart: true 
+  - name: Copy install docker, nodejs script to the Server 
+    ansible.builtin.copy:
+      src: /Users/trinhnguyen/Devops/jenkins-exercises/ansible/exec-inside-jenkins.sh 
+      dest: /home/ec2-user
+  - name: Copy docker, nodejs install script from EC2 into Jenkins container 
+    community.docker.docker_container_copy_into:
+      container: jenkins
+      path: /home/ec2-user/exec-inside-jenkins.sh
+      container_path: /usr/local/bin/exec-inside-jenkins.sh
+  - name: chmod exec-inside-jenkins.sh inside Jenkins container as root 
+    community.docker.docker_container_exec:
+      container: jenkins 
+      user: root
+      argv:
+      - /bin/bash
+      - -c 
+      - "chmod ugo+x /usr/local/bin/exec-inside-jenkins.sh"
+      - "bash /usr/local/bin/exec-inside-jenkins.sh"
+  - name: Run exec-inside-jenkins.sh inside Jenkins container as root 
+    community.docker.docker_container_exec:
+      container: jenkins 
+      user: root
+      argv:
+      - /bin/bash
+      - -c 
+      - "bash /usr/local/bin/exec-inside-jenkins.sh"
+    register: result
+  - debug: msg={{result.stdout_lines}}
+
+
+  
+  
+
+ 
+
+   
+
