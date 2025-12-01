@@ -5,7 +5,7 @@ pipeline {
         stage("Increment Version") {
             steps {
                 script {
-                    increment-nodejs-image-version();
+                    incrementNodejsImageVersion();
                     // dir('app') {
                     //     sh 'npm install'
                     //     sh 'npm version patch --no-git-tag-version'
