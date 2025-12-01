@@ -1,10 +1,11 @@
+@Library('Nodejs')
 pipeline {   
     agent any
     stages {
         stage("Increment Version") {
             steps {
                 script {
-                    echo "Increment version"
+                    increment-nodejs-image-version()
                     dir('app') {
                         sh 'npm install'
                         sh 'npm version patch --no-git-tag-version'
