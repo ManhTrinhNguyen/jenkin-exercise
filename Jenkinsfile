@@ -5,14 +5,14 @@ pipeline {
         stage("Increment Version") {
             steps {
                 script {
-                    increment-nodejs-image-version()
-                    dir('app') {
-                        sh 'npm install'
-                        sh 'npm version patch --no-git-tag-version'
-                        def jsonConfig = readJSON file: 'package.json'
-                        def VERSION = jsonConfig.version
-                        env.IMAGE_VERSION = VERSION 
-                    }
+                    increment-nodejs-image-version();
+                    // dir('app') {
+                    //     sh 'npm install'
+                    //     sh 'npm version patch --no-git-tag-version'
+                    //     def jsonConfig = readJSON file: 'package.json'
+                    //     def VERSION = jsonConfig.version
+                    //     env.IMAGE_VERSION = VERSION 
+                    // }
                 }
             }
         }
