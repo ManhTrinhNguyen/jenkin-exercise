@@ -22,7 +22,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                    buildAndPushDockerImage();
+                    buildAndPushDockerImage() 'nguyenmanhtrinh/demo-app' 'nodejs'
                 }
             }
         }
