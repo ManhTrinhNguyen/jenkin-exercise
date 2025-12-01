@@ -5,8 +5,7 @@ pipeline {
         stage("Increment Version") {
             steps {
                 script {
-                        incrementNodejsImageVersion()
-                    }
+                    incrementNodejsImageVersion();
                 }
             }
         }
@@ -47,4 +46,3 @@ pipeline {
         }
     } 
 }
-
